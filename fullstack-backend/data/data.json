@@ -1,0 +1,21 @@
+{
+    "dataTest": [
+        {
+            "id": 0,
+            "name": "Сергей",
+            "age": 19
+        }
+    ],
+    "todoData": [
+        {
+            "id": 1,
+            "title": "Rea",
+            "checked": true
+        },
+        {
+            "id": 2,
+            "title": "Qeeqwr",
+            "checked": false
+        }
+    ]
+}
