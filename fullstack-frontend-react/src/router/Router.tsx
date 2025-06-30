@@ -8,9 +8,8 @@ const Router = () => {
     <Routes>
       <Route path="/" index element={<MainPage />} />
       <Route path="/change-data-backend" index element={<ChangeDataBackend />} />
-       <Route path='/change-data-backend/new' element={<Createdatabase />} />
-       <Route path='/change-data-backend/edit/:id' element={<Createdatabase />} />
-
+       <Route path='/change-data-backend/new' index element={<Createdatabase />} />
+       <Route path='/change-data-backend/edit/:id' index element={<Createdatabase />} />
     </Routes>
   );
 };

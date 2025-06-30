@@ -44,7 +44,8 @@ export const dataApiPattern = (app) => {
         data.dataTest.push({
             id: idNewData,
             name: crearedData.name,
-            age: crearedData.age
+            age: crearedData.age,
+            email: crearedData.email
         });
 
         updateJsonFile('data.json', data);
@@ -69,7 +70,8 @@ export const dataApiPattern = (app) => {
             const newElement = {
                 id: Number(idDataReq),
                 name: updatedData.name,
-                age: updatedData.age
+                age: updatedData.age,
+                email: updatedData.email
             }
 
             data.dataTest[indexDataTest] = newElement;

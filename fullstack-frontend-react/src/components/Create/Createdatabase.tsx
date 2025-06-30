@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { createData, editDataId, getDataId } from "../../api/controllers/Controller";
+import { createData, editDataId, getDataId } from "../../api/controllers/controller";
 const Createdatabase = () => {
     const { id } = useParams();
     const navigate = useNavigate();

@@ -32,7 +32,7 @@ $api.interceptors.response.use(function (response) {
                         break;
                     case 404:
                     case 405:
-                        window.location.replace(`/error?code=${error.response.status}`);
+                        // window.location.replace(`/error?code=${error.response.status}`);
                         break;
                 }
                 break;

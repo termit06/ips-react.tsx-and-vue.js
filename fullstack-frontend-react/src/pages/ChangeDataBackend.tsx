@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { deleteDataId, getData } from "../api/controllers/Controller";
+import { deleteDataId, getData } from "../api/controllers/controller";
 
 import { dataDto } from "../types/common/data.types";
 

@@ -3,7 +3,8 @@
         {
             "id": 0,
             "name": "Сергей",
-            "age": 19
+            "age": 19,
+            "email": "srg@mail.com"
         }
     ],
     "todoData": [
