@@ -5,6 +5,7 @@ const express = require("express");
 
 import { dataApiPattern } from "./src/api/_dataApiPattern.js";
 import { dataApiTodo } from "./src/api/_dataApiTodo.js";
+import { dataApiJournal } from "./src/api/_dataApiJournal.js";
 
 const PORT = process.env.PORT || 3001;
 
@@ -14,6 +15,8 @@ app.use(express.json());
 dataApiPattern(app);
 
 dataApiTodo(app);
+
+dataApiJournal(app);
 
 app.listen(PORT, () => {
 	console.log(`Server starting on port ${PORT}`);
