@@ -1,6 +1,6 @@
 import { createRequire } from "module";
 
-import {searchIndexObjectDataParamId, searchObjectDataParamId } from "../helpers/_searchDatabase.js";
+import { searchIndexObjectDataParamId, searchObjectDataParamId } from "../helpers/_searchDatabase.js";
 import { updateJsonFile } from "../helpers/_updateJsonFiles.js";
 
 const require = createRequire(import.meta.url);
@@ -8,8 +8,7 @@ const require = createRequire(import.meta.url);
 const data = require('../../data/data.json');
 
 export const dataApiJournal = (app) => {
-
-    app.get('/apiJournal/', (res, req) => {
+    app.get('/apiJournal/data/', (req, res) => {
         return res.json(data.datajournal);
     });
 
@@ -33,7 +32,7 @@ export const dataApiJournal = (app) => {
             idNewData = data.datajournal[data.datajournal.length - 1].id + 1;
         }
         console.log(idNewData);
-        
+
         const createdData = req.body;
         data.datajournal.push({
             id: idNewData,
@@ -45,6 +44,8 @@ export const dataApiJournal = (app) => {
 
         console.log('успешно создано')
 
+        console.log(data.datajournal[data.datajournal.length - 1])
+
         return res.json(data.datajournal[data.datajournal.length - 1]);
     })
     app.get('/apiJournal/:id', (req, res) => {
@@ -53,8 +54,8 @@ export const dataApiJournal = (app) => {
 
         const idDataReq = req.params.id;
 
-        const updatedData  = req.body;
-        
+        const updatedData = req.body;
+
 
         let indexDataJournal = searchIndexObjectDataParamId(idDataReq, data.datajournal);
         if (indexDataJournal === -1) {

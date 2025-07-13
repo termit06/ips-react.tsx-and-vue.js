@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { Box, Button, TextField, Typography } from "@mui/material";
 
-import { createData, editDataId, getDataId } from "../../api/controllers/journal-controller";
+import { createData, editDataId, getData } from "../../api/controllers/journal-controller";
 
 const Createdatabase = () => {
     const { id } = useParams();
@@ -15,16 +15,12 @@ const Createdatabase = () => {
     const [email, setEmail] = React.useState('');
 
     useEffect(() => {
-        if (id) {
-            getDataId(+id)
-                .then((response) => {
-                    setName(response.data.name);
-                    setAge(response.data.age);
-                    setEmail(response.data.email);
-                })
-                .catch((e) => console.log(e));
-        }
-    }, [id]);
+        getData()
+            .then((response) => {
+                console.log(response)
+            })
+            .catch((e) => console.log(e));
+    }, []);
 
     const processingRequest = () => {
         debugger

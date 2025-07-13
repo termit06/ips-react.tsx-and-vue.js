@@ -19,12 +19,24 @@
             "checked": false
         }
     ],
-    "datajournal":[
+    "datajournal": [
         {
             "id": 0,
             "name": "Сергей",
             "age": 19,
             "email": "mail.com"
+        },
+        {
+            "id": 1,
+            "name": "12",
+            "age": 12,
+            "email": "12"
+        },
+        {
+            "id": 2,
+            "name": "12",
+            "age": 12,
+            "email": "12"
         }
     ]
 }
