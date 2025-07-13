@@ -1,7 +1,7 @@
 import { createRequire } from "module";
 
-import {searchIndexObjectDataParamId, searchObjectDataParamId } from "../helpers/_searchDatabase";
-import { updateJsonFile } from "../helpers/_updateJsonFiles";
+import {searchIndexObjectDataParamId, searchObjectDataParamId } from "../helpers/_searchDatabase.js";
+import { updateJsonFile } from "../helpers/_updateJsonFiles.js";
 
 const require = createRequire(import.meta.url);
 
