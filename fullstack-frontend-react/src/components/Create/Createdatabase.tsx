@@ -3,7 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { createData, editDataId, getDataId } from "../../api/controllers/controller";
+
+import { createData, editDataId, getData } from "../../api/controllers/journal-controller";
+
 const Createdatabase = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -13,36 +15,34 @@ const Createdatabase = () => {
     const [email, setEmail] = React.useState('');
 
     useEffect(() => {
-        if (id) {
-            getDataId(+id)
-                .then((response) => {
-                    setName(response.data.name);
-                    setAge(response.data.age);
-                    setEmail(response.data.email);
-                })
-                .catch((e) => console.log(e));
-        }
-    }, [id]);
+        getData()
+            .then((response) => {
+                console.log(response)
+            })
+            .catch((e) => console.log(e));
+    }, []);
 
     const processingRequest = () => {
+        debugger
         const data = {
             name: name,
             age: age,
             email: email
         }
 
-        id ?
+        if (id) {
             editDataId(+id, data)
                 .then(() => {
                     navigate(-1);
                 })
                 .catch((e) => console.log(e))
-            :
+        } else {
             createData(data)
                 .then(() => {
                     navigate(-1);
                 })
                 .catch((e) => console.log(e))
+        }
     }
     return <Box
         sx={{
@@ -57,43 +57,43 @@ const Createdatabase = () => {
                 Name:
             </Typography>
             <TextField value={name}
-            onChange={(e) => setName(e.target.value)}
-            sx={{
-                mb: 2
-            }}/>
+                onChange={(e) => setName(e.target.value)}
+                sx={{
+                    mb: 2
+                }} />
             <Typography>
                 Age:
             </Typography>
-            <TextField  value={age === 0 ? '' : age}
-            type="number"
-            onChange={(e) => setAge(+e.target.value)}/>
+            <TextField value={age === 0 ? '' : age}
+                type="number"
+                onChange={(e) => setAge(+e.target.value)} />
             <Typography>
                 Почта:
             </Typography>
             <TextField value={email}
-            onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 sx={{
-                    mb:3
+                    mb: 3
                 }}
-                />
-                <Button
+            />
+            <Button
                 variant="outlined"
                 onClick={processingRequest}
-            sx={{
-                display: 'block',
-                mt: 4
-            }}
-                >
+                sx={{
+                    display: 'block',
+                    mt: 4
+                }}
+            >
                 {id ? `Редактировать запись` : `Создать новую запись`}
-                </Button>
-                <Button
-                    variant="outlined"
-                    color='error'
-                    onClick={() => navigate('/change-data-backend')}
-                    sx={{mt: 4}}
-                    >
-                      Отмена
-                    </Button>
+            </Button>
+            <Button
+                variant="outlined"
+                color='error'
+                onClick={() => navigate('/change-data-backend')}
+                sx={{ mt: 4 }}
+            >
+                Отмена
+            </Button>
         </Box>
     </Box>
 }
