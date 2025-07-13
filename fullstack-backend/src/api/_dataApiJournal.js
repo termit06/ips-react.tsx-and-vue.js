@@ -25,7 +25,7 @@ export const dataApiJournal = (app) => {
             res.json(data.dataResponse);
         }
     });
-    app.post('/apiJournal/:id', (req, res) => {
+    app.post('/apiJournal/data/', (req, res) => {
         console.log('создается новый элемент ....');
 
         let idNewData = 0;

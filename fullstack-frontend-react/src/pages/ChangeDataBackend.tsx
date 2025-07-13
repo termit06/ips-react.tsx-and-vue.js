@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { deleteDataId, getData } from "../api/controllers/controller";
+import { deleteDataId, getData } from "../api/controllers/journal-controller";
 
 import { datajournal } from "../types/journal/journal.types";
 
@@ -42,16 +42,16 @@ const ChangeDataBackend = () => {
     return <Box
         sx={{
             width: '400px',
-            
+
             m: '0 auto'
         }}
     >
         <Button color="secondary"
-        variant="contained"
-                    onClick={() => navigate('/')}>
-                        
-                    Главная страница
-                </Button>
+            variant="contained"
+            onClick={() => navigate('/')}>
+
+            Главная страница
+        </Button>
         <List>
             {
                 data?.map((item, key) => (
@@ -61,7 +61,7 @@ const ChangeDataBackend = () => {
                             display: 'flex',
                             justifyContent: 'space-between',
                             border: '1px solid #007dea',
-                            color:'blue'
+                            color: 'blue'
                         }}
                     >
                         <Box
@@ -112,9 +112,9 @@ const ChangeDataBackend = () => {
                 ))
             }
         </List>
-         <Button
+        <Button
             variant="outlined"
-            
+
             onClick={() => navigate('/change-data-backend/new/')}
             sx={{
                 my: 1
