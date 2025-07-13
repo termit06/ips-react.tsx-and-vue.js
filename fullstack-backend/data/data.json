@@ -18,5 +18,13 @@
             "title": "Qeeqwr",
             "checked": false
         }
+    ],
+    "datajournal":[
+        {
+            "id": 0,
+            "name": "Сергей",
+            "age": 19,
+            "email": "mail.com"
+        }
     ]
 }

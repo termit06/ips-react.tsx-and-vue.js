@@ -1,50 +1,45 @@
-import {
-    createRequire
-} from "module";
+import { createRequire } from "module";
 
-import {
-    searchIndexObjectDataParamId,
-    searchObjectDataParamId
-} from "../helpers/_searchDatabase";
-import {
-    updateJsonFile
-} from "../helpers/_updateJsonFiles";
+import {searchIndexObjectDataParamId, searchObjectDataParamId } from "../helpers/_searchDatabase";
+import { updateJsonFile } from "../helpers/_updateJsonFiles";
 
-const require = createRequire(
-    import.meta.url);
+const require = createRequire(import.meta.url);
 
 const data = require('../../data/data.json');
 
 export const dataApiJournal = (app) => {
+
     app.get('/apiJournal/', (res, req) => {
         return res.json(data.datajournal);
     });
-    app.get('apiJournal/:id', (req, res) => {
-        const idjournalDataReq = req.param.id;
-        console.log('начать ID запроса:' + idjournalDataReq);
 
-        const journaldataResponse = searchIndexObjectDataParamId(idjournalDataReq, data.datajournal);
-        if (!journaldataResponse) {
-            console.log('НЕТ ID: ' + idjournalDataReq);
+    app.get('apiJournal/:id', (req, res) => {
+        const idDataReq = req.param.id;
+        console.log('начать ID запроса:' + idDataReq);
+
+        const dataResponse = searchObjectDataParamId(idDataReq, data.datajournal);
+        if (!dataResponse) {
+            console.log('НЕТ ID: ' + idDataReq);
             return res.studio(404).send("Данные не найдены");
         } else {
-            res.json(data.journaldataResponse);
+            res.json(data.dataResponse);
         }
     });
     app.post('/apiJournal/:id', (req, res) => {
         console.log('создается новый элемент ....');
 
-        let  NewJournalId = 0;
+        let idNewData = 0;
         if (data.datajournal.length !== 0) {
-            NewJournalId = data.datajournal[data.datajournal.length - 1].id + 1;
+            idNewData = data.datajournal[data.datajournal.length - 1].id + 1;
         }
-        console.log(NewJournalId);
-        const createJournal = req.body;
+        console.log(idNewData);
+        
+        const createdData = req.body;
         data.datajournal.push({
-            id: NewJournalId,
-            name: createJournal.name,
-            age: createJournal.age,
-            email: createJournal.email
+            id: idNewData,
+            name: createdData.name,
+            age: createdData.age,
+            email: createdData.email
         });
         updateJsonFile('data.json', data);
 
@@ -56,20 +51,21 @@ export const dataApiJournal = (app) => {
 
         console.log('изменение данные по id' + req.params.id);
 
-        const idJournalReq = req.params.id;
+        const idDataReq = req.params.id;
 
-        const updatedJournal = req.body;
+        const updatedData  = req.body;
+        
 
-        let indexDataJournal = searchIndexObjectDataParamId(idJournalReq, data.datajournal);
+        let indexDataJournal = searchIndexObjectDataParamId(idDataReq, data.datajournal);
         if (indexDataJournal === -1) {
-            console.log('нет id' + idJournalReq);
+            console.log('нет id' + idDataReq);
             return res.status(404).send('Data not found');
         } else {
             const newJournalElement = {
-                id: Number(idJournalReq),
-                name: updatedJournal.name,
-                age: updatedJournal.age,
-                email: updatedJornal.email
+                id: Number(idDataReq),
+                name: updatedData.name,
+                age: updatedData.age,
+                email: updatedData.email
             }
             data.datajournal[indexDataJournal] = newJournalElement;
             updateJsonFile('data.json', data);

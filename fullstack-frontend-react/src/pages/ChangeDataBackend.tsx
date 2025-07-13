@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { deleteDataId, getData } from "../api/controllers/controller";
 
-import { dataDto } from "../types/common/data.types";
+import { datajournal } from "../types/journal/journal.types";
 
 import {
     Box,
@@ -16,7 +16,7 @@ import {
 const ChangeDataBackend = () => {
     const navigate = useNavigate();
 
-    const [data, setData] = React.useState<dataDto[]>();
+    const [data, setData] = React.useState<datajournal[]>();
 
     useEffect(() => {
         getData()
